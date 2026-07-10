@@ -1,11 +1,11 @@
 {
   "restaurant": {
-    "name": "كفيتريا",
+    "name": "مطعم",
     "nameEn": "matam",
     "description": "مطبخ الشرق الأصيل",
     "descriptionEn": "Authentic Middle Eastern Kitchen",
     "logo": "./img/logo.jpg",
-    "coverImage": "./img/cover.png",
+    "coverImage": "img/bak.png",
     "phone": "+9647503475937",
     "phoneClean": "9647503475937",
     "whatsapp": "9647503475937",
