@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="قائمة مطعم إلكترونية حديثة - Electronic Restaurant Menu">
+    <meta name="theme-color" content="#ff7b29">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    
+    <title>كفيتريا</title>
+    <link rel="icon" type="image/x-icon" href="./img/logo.jpg">
+    <!-- Google Fonts - Cairo for Arabic -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- QR Code Library -->
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.0/build/qrcode.min.js"></script>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="spinner"></div>
+        <p>جاري التحضير...</p>
+    </div>
+
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Main Container -->
+    <div class="container" role="main">
+        
+        <!-- Top Navigation Bar -->
+        <nav class="top-nav" role="navigation" aria-label="الملاحة العلوية">
+            <button class="nav-btn" id="searchBtn" aria-label="بحث الأطباق">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.35-4.35"></path>
+                </svg>
+            </button>
+            
+            <div class="nav-center">
+                <span class="app-title">تنّور</span>
+            </div>
+            
+            <div class="nav-right">
+                <button class="nav-btn" id="themeToggle" aria-label="تبديل الوضع بين الفاتح والغامق">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <!--
+                <button class="nav-btn" id="menuBtn" aria-label="فتح القائمة">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+                -->
+            </div>
+        </nav>
+
+        <!-- Search Bar (Hidden by default) -->
+        <div class="search-container" id="searchContainer">
+            <div class="search-wrapper">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.35-4.35"></path>
+                </svg>
+                <input 
+                    type="text" 
+                    id="searchInput" 
+                    placeholder="ابحث عن الطبق..." 
+                    autocomplete="off"
+                    aria-label="حقل البحث عن الأطباق">
+                <button class="clear-search" id="clearSearch" aria-label="مسح البحث">✕</button>
+            </div>
+        </div>
+
+        <!-- Hero Section -->
+        <section class="hero-section" aria-label="صورة ومعلومات المطعم">
+            <div class="hero-image-wrapper">
+                <img 
+                    class="hero-image" 
+                    src="./img/cover.png" 
+                    alt="صورة المطعم"
+                    loading="lazy"
+                    onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22600%22 height=%22220%22%3E%3Crect fill=%22%23f0f0f0%22 width=%22600%22 height=%22220%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23999%22%3Eصورة المطعم%3C/text%3E%3C/svg%3E'">
+                <div class="hero-overlay"></div>
+            </div>
+            
+            <!-- Restaurant Info Card -->
+            <div class="restaurant-info">
+                <div class="restaurant-logo">
+                    <img 
+                        src="./img/logo.jpg" 
+                        alt="شعار المطعم"
+                        class="logo-icon"
+                        onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22%3E%3Crect fill=%22%23f0f0f0%22 width=%22100%22 height=%22100%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23999%22%3Eشعار%3C/text%3E%3C/svg%3E'">
+                </div>
+                <div class="restaurant-details">
+                    <h1 class="restaurant-name">تنّور</h1>
+                    <p class="restaurant-desc">مطبخ الشرق الأصيل</p>
+                    <div class="restaurant-meta">
+                        <!--<span class="rating">⭐ 4.8</span> 
+                        <span class="separator">•</span>
+                        <span class="reviews">245 تقييم</span>  -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Categories Navigation (Sticky) -->
+        <nav class="categories-nav" id="categoriesNav" aria-label="فئات الطعام">
+            <div class="categories-scroll">
+                <button class="category-btn active" data-category="all" aria-selected="true">
+                    الكل
+                </button>
+                <button class="category-btn" data-category="appetizers" aria-selected="false">
+                    المقبلات
+                </button>
+                <button class="category-btn" data-category="mains" aria-selected="false">
+                    الأطباق الرئيسية
+                </button>
+                <button class="category-btn" data-category="grilled" aria-selected="false">
+                    المشويات
+                </button>
+                <button class="category-btn" data-category="soups" aria-selected="false">
+                    الحساء
+                </button>
+                <button class="category-btn" data-category="desserts" aria-selected="false">
+                    الحلويات
+                </button>
+                <button class="category-btn" data-category="beverages" aria-selected="false">
+                    المشروبات
+                </button>
+            </div>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="menu-content" role="main">
+            
+            <!-- All Items Section -->
+            <section class="menu-section" id="allSection" data-category="all">
+                <h2 class="section-title">القائمة الكاملة</h2>
+                <div class="foods-grid" id="allGrid" role="region" aria-label="جميع الأطباق"></div>
+            </section>
+
+            <!-- Appetizers Section -->
+            <section class="menu-section" id="appetizersSection" data-category="appetizers" style="display: none;">
+                <h2 class="section-title">المقبلات</h2>
+                <p class="section-desc">اجود انواع المقبلات</p>
+                <div class="foods-grid" id="appetizersGrid" role="region" aria-label="المقبلات"></div>
+            </section>
+
+            <!-- Mains Section -->
+            <section class="menu-section" id="mainsSection" data-category="mains" style="display: none;">
+                <h2 class="section-title">الأطباق الرئيسية</h2>
+                <p class="section-desc">أشهى الأطباق الرئيسية اللذيذة</p>
+                <div class="foods-grid" id="mainsGrid" role="region" aria-label="الأطباق الرئيسية"></div>
+            </section>
+
+            <!-- Grilled Section -->
+            <section class="menu-section" id="grilledSection" data-category="grilled" style="display: none;">
+                <h2 class="section-title">المشويات</h2>
+                <p class="section-desc">مشويات فاخرة على الفحم</p>
+                <div class="foods-grid" id="grilledGrid" role="region" aria-label="المشويات"></div>
+            </section>
+
+            <!-- Soups Section -->
+            <section class="menu-section" id="soupsSection" data-category="soups" style="display: none;">
+                <h2 class="section-title">الحساء</h2>
+                <p class="section-desc">حساءات شهية دافئة</p>
+                <div class="foods-grid" id="soupsGrid" role="region" aria-label="الحساء"></div>
+            </section>
+
+            <!-- Desserts Section -->
+            <section class="menu-section" id="dessertsSection" data-category="desserts" style="display: none;">
+                <h2 class="section-title">الحلويات</h2>
+                <p class="section-desc">حلويات شرقية فاخرة</p>
+                <div class="foods-grid" id="dessertsGrid" role="region" aria-label="الحلويات"></div>
+            </section>
+
+            <!-- Beverages Section -->
+            <section class="menu-section" id="beveragesSection" data-category="beverages" style="display: none;">
+                <h2 class="section-title">المشروبات</h2>
+                <p class="section-desc">مشروبات منعشة ولذيذة</p>
+                <div class="foods-grid" id="beveragesGrid" role="region" aria-label="المشروبات"></div>
+            </section>
+
+            <!-- Empty State -->
+            <div class="empty-state" id="emptyState" style="display: none;">
+                <div class="empty-icon">🔍</div>
+                <h3>لم يتم العثور على نتائج</h3>
+                <p>حاول البحث عن شيء آخر</p>
+                <button class="btn-primary" onclick="document.getElementById('searchInput').value = ''; window.app.search('');">
+                    مسح البحث
+                </button>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <h3 class="footer-title">معلومات التواصل</h3>
+                
+<footer class="footer">
+    <div class="footer-content">
+        <h3 class="footer-title">معلومات التواصل</h3>
+        
+        <div class="footer-section">
+            <h4>📍 العنوان</h4>
+            <!-- الـ JS سيبحث عن هذا الـ id ليضع كلمة "خانك" -->
+            <p id="footerAddress">شارع السليمانية، مدينة السليمانية<br>العراق</p>
+        </div>
+
+        <div class="footer-section">
+            <h4>📞 رقم الهاتف</h4>
+            <!-- الـ JS سيبحث عن هذا الـ id ليضع رقم الهاتف الجديد -->
+            <p><a href="tel:+9647501234567" class="footer-link" id="footerPhone">+964 750 123 4567</a></p>
+        </div>
+
+        <div class="footer-section">
+            <h4>🕐 ساعات العمل</h4>
+            <!-- الـ JS سيقوم بتفريغ هذا الـ id وبناء الساعات من الـ JSON تلقائياً -->
+            <div id="footerHours" class="restaurant-hours">
+                <p>الثلاثاء - الخميس: 12:00 - 23:00</p>
+                <p>الجمعة - السبت: 12:00 - 01:00</p>
+                <p>الأحد: 16:00 - 23:00</p>
+            </div>
+        </div>
+
+        <div class="footer-section">
+            <h4>📱 تابعنا</h4>
+            <div class="social-links">
+                <!-- أضفنا كلاسات مخصصة لروابط السوشيال ميديا -->
+                <a href="#" class="social-facebook" aria-label="صفحتنا على Facebook" title="Facebook">f</a>
+                <a href="#" class="social-instagram" aria-label="حسابنا على Instagram" title="Instagram">📷</a>
+                <a href="#" class="social-whatsapp" aria-label="راسلنا على WhatsApp" title="WhatsApp">💬</a>
+            </div>
+        </div>
+
+        <div class="footer-divider"></div>
+
+        <div class="footer-bottom">
+            <p>تم التصميم بواسطة <strong>Imad Ajaj</strong></p>
+            <!-- كلاس لتحديث الاسم في الحقوق أيضاً تلقائياً -->
+            <p>&copy; 2024 مطعم <span class="footer-copy-name">تنّور</span>. جميع الحقوق محفوظة.</p>
+        </div>
+    </div>
+</footer>
+    </div>
+
+    <!-- Food Detail Modal -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal" id="foodModal" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+            <button class="modal-close" id="modalClose" aria-label="إغلاق تفاصيل الطبق">✕</button>
+            
+            <div class="modal-image-wrapper">
+                <img 
+                    id="modalImage" 
+                    src="" 
+                    alt="" 
+                    class="modal-image" 
+                    loading="lazy"
+                    onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect fill=%22%23f0f0f0%22 width=%22400%22 height=%22300%22/%3E%3C/svg%3E'">
+                <div class="modal-badges">
+                    <span id="badgeContainer"></span>
+                </div>
+                <button class="btn-favorite" id="modalFavorite" aria-label="إضافة إلى المفضلة">♡</button>
+            </div>
+
+            <div class="modal-content">
+                <h2 id="modalTitle" class="modal-title">اسم الطبق</h2>
+                <div class="modal-rating">
+                    <span id="modalRating">⭐ 4.8</span>
+                </div>
+
+                <div class="modal-section">
+                    <h3>الوصف</h3>
+                    <p id="modalDescription"></p>
+                </div>
+
+                <div class="modal-section">
+                    <h3>المكونات</h3>
+                    <ul id="modalIngredients" class="ingredients-list"></ul>
+                </div>
+
+                <div class="modal-section">
+                    <h3>معلومات التغذية</h3>
+                    <div class="nutrition-info">
+                        <div class="nutrition-item">
+                            <span class="nutrition-label">السعرات</span>
+                            <span id="modalCalories">250</span>
+                        </div>
+                        <div class="nutrition-item">
+                            <span class="nutrition-label">البروتين</span>
+                            <span id="modalProtein">12g</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-price">
+                    <div>
+                        <span class="price-label">السعر</span>
+                        <span id="modalPrice" class="price-value"></span>
+                    </div>
+                </div>
+
+                <div class="modal-actions">
+                    <button class="btn-secondary" id="shareBtn" aria-label="مشاركة الطبق">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="18" cy="5" r="3"></circle>
+                            <circle cx="6" cy="12" r="3"></circle>
+                            <circle cx="18" cy="19" r="3"></circle>
+                            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                        </svg>
+                        مشاركة
+                    </button>
+                    <button class="btn-primary" id="orderBtn" aria-label="اطلب الآن">
+                        اطلب الآن
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- QR Code Modal -->
+    <div class="modal-overlay" id="qrModalOverlay">
+        <div class="modal small-modal" id="qrModal" role="dialog" aria-labelledby="qrTitle" aria-hidden="true">
+            <button class="modal-close" id="qrClose" aria-label="إغلاق رمز QR">✕</button>
+            <h2 id="qrTitle">رمز QR للقائمة</h2>
+            <div id="qrCode" class="qr-code-container"></div>
+            <button class="btn-primary" id="downloadQR" style="width: 100%;">
+                تحميل الرمز
+            </button>
+        </div>
+    </div>
+
+    <!-- Floating Action Buttons -->
+    <div class="fab-container">
+        <button class="fab fab-whatsapp" id="whatsappBtn" title="اتصل عبر WhatsApp" aria-label="اتصل عبر WhatsApp">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004a9.87 9.87 0 00-4.968 1.495c-1.53.92-2.779 2.292-3.674 3.853C1.806 12.18.138 16.5 2.846 19.208c2.708 2.708 7.028 1.04 8.913-1.58 1.135-1.465 2.306-3.226 2.306-5.346 0-4.477-3.527-8.111-7.875-8.111z"/>
+            </svg>
+        </button>
+
+        <button class="fab fab-call" id="callBtn" title="اتصل بنا" aria-label="اتصل بنا">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+            </svg>
+        </button>
+<!--
+        <button class="fab fab-order" id="orderFloatBtn" title="الطلب الجديد" aria-label="الطلب الجديد">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M15 7v2h2v-2h3V5h-3V3h-2v2h-2v2h2zm4 8h2v2h-2zm0 3h2v2h-2zM3 9h8V5H3v4zm0 5h8v-4H3v4zm0 5h8v-4H3v4zm10-2h2v-2h-2v2z"/>
+            </svg>
+        </button> -->
+
+        <button class="fab fab-back-to-top" id="backToTopBtn" title="العودة للأعلى" aria-label="العودة للأعلى">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="18 15 12 9 6 15"></polyline>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Menu Drawer (Mobile) 
+    <div class="menu-drawer" id="menuDrawer" role="navigation" aria-label="القائمة الجانبية" aria-hidden="true">
+        <div class="drawer-header">
+            <h2>القائمة</h2>
+            <button class="drawer-close" id="drawerClose" aria-label="إغلاق القائمة">✕</button>
+        </div>
+        <nav class="drawer-nav">
+            <a href="javascript:void(0)" class="drawer-link" onclick="document.querySelector('.app-title').scrollIntoView({behavior: 'smooth'})">الصفحة الرئيسية</a>
+            <a href="javascript:void(0)" class="drawer-link" id="qrMenuBtn">رمز QR</a>
+            <a href="javascript:void(0)" class="drawer-link" id="printMenuBtn">طباعة القائمة</a>
+            <a href="tel:+9647501234567" class="drawer-link">اتصل بنا</a>
+            <hr class="drawer-divider">
+            <label class="drawer-label">
+                <input type="checkbox" id="darkModeToggle" aria-label="تفعيل الوضع الليلي">
+                <span>الوضع الليلي</span>
+            </label>
+        </nav>
+    </div>
+-->
+    <!-- Toast Notification -->
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>

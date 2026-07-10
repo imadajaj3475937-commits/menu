@@ -1,0 +1,44 @@
+{
+  "restaurant": {
+    "name": "كفيتريا",
+    "nameEn": "matam",
+    "description": "مطبخ الشرق الأصيل",
+    "descriptionEn": "Authentic Middle Eastern Kitchen",
+    "logo": "./img/logo.jpg",
+    "coverImage": "./img/cover.png",
+    "phone": "+9647503475937",
+    "phoneClean": "9647503475937",
+    "whatsapp": "9647503475937",
+    "address": "خانك",
+    "addressEn": "khank",
+    "hours": {
+      "day1": {
+        "name": "الثلاثاء - الخميس",
+        "nameEn": "Tuesday - Thursday",
+        "time": "12:00 - 23:00"
+      },
+      "day2": {
+        "name": "الجمعة - السبت",
+        "nameEn": "Friday - Saturday",
+        "time": "12:00 - 01:00"
+      },
+      "day3": {
+        "name": "الأحد",
+        "nameEn": "Sunday",
+        "time": "16:00 - 23:00"
+      }
+    },
+    "social": {
+      "facebook": "https://facebook.com/tannoor",
+      "instagram": "https://instagram.com/tannoor",
+      "whatsapp": "https://wa.me/9647501234567"
+    },
+    "theme": {
+      "primaryColor": "#ff7b29",
+      "primaryDark": "#ff8b3d",
+      "primaryLight": "#ffb84d"
+    },
+    "rating": 4.8,
+    "reviews": 245
+  }
+}

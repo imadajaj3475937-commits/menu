@@ -1,0 +1,168 @@
+{
+  "categories": [
+    {
+      "id": "all",
+      "name": "الكل",
+      "description": "القائمة الكاملة"
+    },
+    {
+      "id": "appetizers",
+      "name": "المقبلات",
+      "description": "تشكيلة من أشهى المقبلات الشرقية"
+    },
+    {
+      "id": "mains",
+      "name": "الأطباق الرئيسية",
+      "description": "أشهى الأطباق الرئيسية اللذيذة"
+    },
+    {
+      "id": "grilled",
+      "name": "المشويات",
+      "description": "مشويات فاخرة على الفحم"
+    },
+    {
+      "id": "soups",
+      "name": "الحساء",
+      "description": "حساءات شهية دافئة"
+    },
+    {
+      "id": "desserts",
+      "name": "الحلويات",
+      "description": "حلويات شرقية فاخرة"
+    },
+    {
+      "id": "beverages",
+      "name": "المشروبات",
+      "description": "مشروبات منعشة ولذيذة"
+    }
+
+  ],
+  "items": [
+    {
+      "id": 1,
+      "name": "سلطة",
+      "description": "خيار مع طماطة و ليمون",
+      "price": 2000,
+      "category": "appetizers",
+      "image": "img/42f0a0e052ef6ab9a7d17f721ec96845_w750_h750.jpg",
+      "badge": "new",
+      "available": true,
+      "rating": 4.8,
+      "ingredients": ["حمص", "زيت زيتون", "ليمون", "ملح", "كمون"]
+    },
+    {
+      "id": 2,
+      "name": "متبل الباذنجان",
+      "description": "باذنجان مشوي مع الطحينة",
+      "price": 28000,
+      "category": "appetizers",
+      "image": "img/images (1).jpg",
+      "badge": null,
+      "available": true,
+      "rating": 4.6,
+      "ingredients": ["باذنجان", "طحينة", "ليمون", "ثوم", "ملح"]
+
+    },
+    
+    {
+      "id": 4,
+      "name": "تشريب دجاج",
+      
+      "price": 45000,
+      "category": "mains",
+      "image": "img/sddefault.jpg",
+      "badge": "best",
+      "available": true
+    },
+  
+    {
+      
+      "id": 7,
+      "name": "تكا دجاج",
+      
+      "price": 42000,
+      "category": "grilled",
+      "image": "img/images (2).jpg",
+      "badge": "best",
+      "available": true
+    },
+    {
+      "id": 8,
+      "name": "كباب على الفحم",
+      "price": 52000,
+      "category": "grilled",
+      "image": "img/images (3).jpg",
+      "badge": "hot",
+      "available": true
+    },
+    {
+      "id": 9,
+      "name": "اجنجة مشوية",
+      "price": 38000,
+      "category": "grilled",
+      "image": "img/images (4).jpg",
+      "badge": null,
+      "available": true
+    },
+    {
+      "id": 10,
+      "name": "حساء العدس",
+      "price": 22000,
+      "category": "soups",
+      "image": "img/images (5).jpg",
+      "badge": "new",
+      "available": true
+    },
+    {
+      "id": 12,
+      "name": "حساء الفطر",
+      "description": "فطر مع كريمة وأعشاب",
+      "price": 28000,
+      "category": "soups",
+      "image": "img/images (6).jpg",
+      "badge": "new",
+      "available": true
+    },
+    {
+      "id": 13,
+      "name": "كنافة بالفستق",
+      "description": "كنافة مقرمشة مع فستق وشيرة",
+      "price": 32000,
+      "category": "desserts",
+      "image": "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=200&h=200&fit=crop",
+      "badge": "best",
+      "available": true
+    },
+    {
+      "id": 14,
+      "name": "بقلاوة",
+      "description": "بقلاوة هشة بحشوة فستق",
+      "price": 28000,
+      "category": "desserts",
+      "image": "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=200&h=200&fit=crop",
+      "badge": null,
+      "available": true
+    },
+
+    {
+      "id": 16,
+      "name": "عصير برتقال",
+      "description": "عصير برتقال طازج بارد",
+      "price": 18000,
+      "category": "beverages",
+      "image": "https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=200&h=200&fit=crop",
+      "badge": "new",
+      "available": true
+    },
+    {
+      "id": 18,
+      "name": "قهوة عربية",
+      "description": "قهوة عربية بالهيل والقرفة",
+      "price": 15000,
+      "category": "beverages",
+      "image": "img/images (7).jpg",
+      "badge": "best",
+      "available": true
+    }
+  ]
+}
